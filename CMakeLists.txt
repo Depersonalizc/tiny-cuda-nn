@@ -278,6 +278,10 @@ target_include_directories(tiny-cuda-nn PUBLIC
 )
 target_link_libraries(tiny-cuda-nn PUBLIC ${CUDA_LIBRARIES} ${TCNN_LIBRARIES} fmt)
 
+# Store CUDA version and architectures used as target properties
+set_property(TARGET tiny-cuda-nn PROPERTY TCNN_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES})
+set_property(TARGET tiny-cuda-nn PROPERTY TCNN_CUDA_VERSION ${CUDA_VERSION})
+
 if (TCNN_BUILD_EXAMPLES)
 	add_subdirectory("samples")
 endif()
